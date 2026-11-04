@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Go visual</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #07060f;
+    overflow: hidden;
+  }
+  canvas { display: block; width: 100%; height: 100%; }
+  body.idle canvas { cursor: none; }
+  #controls {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    gap: 8px;
+    transition: opacity 0.5s ease;
+  }
+  #controls select[hidden] { display: none; }
+  #controls button, #controls select {
+    min-width: 34px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    background: rgba(8, 8, 14, 0.55);
+    color: #fff;
+    font: 13px/1.2 ui-sans-serif, system-ui, sans-serif;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+  }
+  body.idle #controls { opacity: 0; pointer-events: none; }
+  #fx {
+    position: fixed;
+    right: 16px;
+    bottom: 64px;
+    width: 250px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    background: rgba(8, 8, 14, 0.62);
+    color: #fff;
+    font: 12px/1.2 ui-sans-serif, system-ui, sans-serif;
+    backdrop-filter: blur(12px);
+  }
+  #fx[hidden] { display: none; }
+  #fx label { display: grid; grid-template-columns: 82px 1fr 34px; align-items: center; gap: 8px; margin: 6px 0; }
+  #fx input { width: 100%; accent-color: #c4b5fd; }
+  #fx output { text-align: right; opacity: 0.75; font-variant-numeric: tabular-nums; }
+  #fx button {
+    margin-top: 6px;
+    padding: 5px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+  #error {
+    position: fixed;
+    inset: 16px;
+    margin: 0;
+    color: #fca5a5;
+    font: 12px/1.4 ui-monospace, monospace;
+    white-space: pre-wrap;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<canvas id="view"></canvas>
+<pre id="error" hidden></pre>
+<div id="controls">
+  <button id="res-down" type="button" title="Bigger hexagons (-)">−</button>
+  <button id="res-up" type="button" title="More hexagons (+)">+</button>
+  <button id="tl" type="button" title="Camera time-lapse (T)">Time-lapse</button>
+  <select id="tl-gap" title="Seconds between snapshots ([ and ])" hidden></select>
+  <button id="cam" type="button">Camera</button>
+  <button id="fx-btn" type="button" title="Effect controls (E)">Effects</button>
+</div>
+<div id="fx" hidden>
+  <div id="fx-sliders"></div>
+  <button id="fx-reset" type="button">Reset</button>
+</div>
+<script src="eigenfaces.js?v=64"></script>
+<script src="face.js?v=64"></script>
+<script src="tiles.js?v=64"></script>
+</body>
+</html>
