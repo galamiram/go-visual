@@ -9,6 +9,8 @@ people who don't exist. Turn on the camera and it becomes you.
 
 Plain WebGL2, no build step, no dependencies.
 
+Live: <https://go-visual.vercel.app>
+
 ## Run
 
 Any static file server works, for example:
